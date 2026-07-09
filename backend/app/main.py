@@ -1,4 +1,6 @@
+from app.api.upload import router as upload_router
 from fastapi import FastAPI
+from app.api.health import router as health_router
 
 app = FastAPI(
     title="Atlas AI API",
@@ -15,10 +17,5 @@ def root():
     }
 
 
-@app.get("/health")
-def health_check():
-    return {
-        "status": "healthy",
-        "application": "Atlas AI",
-        "version": "1.0.0"
-    }
+app.include_router(health_router)
+app.include_router(upload_router)
