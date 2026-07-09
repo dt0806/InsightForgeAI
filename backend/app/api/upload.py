@@ -1,3 +1,4 @@
+from app.services.pdf_service import extract_text_from_pdf
 from pathlib import Path
 from fastapi import APIRouter, UploadFile, File, HTTPException
 
@@ -22,10 +23,11 @@ async def upload_pdf(file: UploadFile = File(...)):
     with open(file_path, "wb") as saved_file:
         saved_file.write(file_content)
 
+    text = extract_text_from_pdf(str(file_path))
+
     return {
-        "message": "PDF uploaded and saved successfully",
-        "filename": file.filename,
-        "content_type": file.content_type,
-        "file_size_bytes": len(file_content),
-        "saved_path": str(file_path)
-    }
+    "message": "PDF uploaded successfully",
+    "filename": file.filename,
+    "pages_text_length": len(text),
+    "preview": text[:500]
+}
