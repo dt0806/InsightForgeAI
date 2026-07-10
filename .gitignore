@@ -14,3 +14,6 @@ venv/
 
 #uploaded files
 backend/uploads/
+
+#Test datasets
+datasets/
