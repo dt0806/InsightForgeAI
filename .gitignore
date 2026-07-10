@@ -235,3 +235,7 @@ backend/uploads/
 
 #Test datasets
 datasets/
+
+#Generated application data
+backend/uploads/
+backend/processed/

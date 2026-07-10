@@ -1,9 +1,12 @@
 from pathlib import Path
-from fastapi import APIRouter, UploadFile, File, HTTPException
+from uuid import uuid4
 
+from fastapi import APIRouter, File, HTTPException, UploadFile
+
+from app.services.chunk_service import create_chunk_records
 from app.services.pdf_service import extract_text_from_pdf
+from app.services.storage_service import save_chunk_records
 from app.services.text_service import split_text_into_chunks
-
 
 router = APIRouter()
 
@@ -29,11 +32,25 @@ async def upload_pdf(file: UploadFile = File(...)):
     text = extract_text_from_pdf(str(file_path))
     chunks = split_text_into_chunks(text)
 
+    document_id = str(uuid4())
+
+    chunk_records = create_chunk_records(
+        chunks=chunks,
+        document_id=document_id,
+        source_file=file.filename
+    )
+
+    processed_file_path = save_chunk_records(
+        document_id=document_id,
+        records=chunk_records
+    )
+
     return {
-    "message": "PDF uploaded, extracted, and chunked successfully",
-    "filename": file.filename,
-    "text_length": len(text),
-    "chunk_count": len(chunks),
-    "text_preview": text[:500],
-    "first_chunk_preview": chunks[0][:500] if chunks else ""
-}
+        "message": "PDF uploaded and processed successfully",
+        "document_id": document_id,
+        "filename": file.filename,
+        "text_length": len(text),
+        "chunk_count": len(chunk_records),
+        "processed_file": str(processed_file_path),
+        "first_chunk": chunk_records[0] if chunk_records else None
+    }
