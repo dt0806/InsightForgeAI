@@ -4,6 +4,7 @@ from app.api.health import router as health_router
 from app.api.documents import router as documents_router
 from app.api.chat import router as chat_router
 from app.api.semantic_search import router as semantic_search_router
+from app.api.rag import router as rag_router
 
 app = FastAPI(
     title="InsightForgeAI API",
@@ -25,3 +26,4 @@ app.include_router(upload_router)
 app.include_router(documents_router)
 app.include_router(chat_router)
 app.include_router(semantic_search_router)
+app.include_router(rag_router)

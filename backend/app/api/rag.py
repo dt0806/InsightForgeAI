@@ -1,23 +1,24 @@
 from fastapi import APIRouter, HTTPException
 
-from app.schemas.chat import ChatRequest
-from app.services.semantic_search_service import semantic_search
+from app.schemas.rag import RAGRequest
+from app.services.rag_service import answer_question
 
 
 router = APIRouter(
-    prefix="/chat",
-    tags=["Chat"]
+    prefix="/rag",
+    tags=["RAG"]
 )
 
 
-@router.post("")
-def search_document(request: ChatRequest):
+@router.post("/answer")
+def generate_rag_answer(request: RAGRequest):
     try:
-        matches = semantic_search(
+        result = answer_question(
             document_id=request.document_id,
             question=request.question,
             limit=request.limit
         )
+
     except FileNotFoundError as error:
         raise HTTPException(
             status_code=404,
@@ -29,11 +30,10 @@ def search_document(request: ChatRequest):
             status_code=500,
             detail=str(error)
         ) from error
-    
+
     return {
         "document_id": request.document_id,
         "question": request.question,
-        "retrieval_method": "semantic",
-        "match_count": len(matches),
-        "matches": matches
+        "answer": result["answer"],
+        "sources": result["sources"]
     }
