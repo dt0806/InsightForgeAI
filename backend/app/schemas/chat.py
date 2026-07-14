@@ -6,8 +6,15 @@ class ChatRequest(BaseModel):
         ...,
         description="ID of the processed document"
     )
+
     question: str = Field(
         ...,
         min_length=3,
-        description="Question to search for in the document"
+        description="Question about the document"
+    )
+
+    limit: int = Field(
+        default=3,
+        ge=1,
+        le=10
     )

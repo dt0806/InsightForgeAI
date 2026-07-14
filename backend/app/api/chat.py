@@ -1,7 +1,7 @@
 from fastapi import APIRouter, HTTPException
 
 from app.schemas.chat import ChatRequest
-from app.services.search_service import search_document_chunks
+from app.services.search_service import semantic_search
 
 
 router = APIRouter(
@@ -13,9 +13,10 @@ router = APIRouter(
 @router.post("")
 def search_document(request: ChatRequest):
     try:
-        matches = search_document_chunks(
+        matches = semantic_search(
             document_id=request.document_id,
-            question=request.question
+            question=request.question,
+            limit=request.limit
         )
     except FileNotFoundError as error:
         raise HTTPException(
@@ -23,6 +24,12 @@ def search_document(request: ChatRequest):
             detail=str(error)
         ) from error
 
+    except ValueError as error:
+        raise HTTPException(
+            status_code=500,
+            detail=str(error)
+        ) from error
+    
     return {
         "document_id": request.document_id,
         "question": request.question,
