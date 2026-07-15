@@ -1,8 +1,8 @@
-# Atlas AI Architecture
+# InsightForgeAI Architecture
 
 ## Overview
 
-Atlas AI follows a modern enterprise architecture consisting of a React frontend, FastAPI backend, AI services, and data engineering pipelines.
+InsightForgeAI follows a modern enterprise architecture consisting of a React frontend, FastAPI backend, AI services, and data engineering pipelines.
 
 The frontend provides an intuitive interface for uploading documents, datasets, and interacting with AI.
 

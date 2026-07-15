@@ -2,13 +2,13 @@
 
 # Project Name
 
-Atlas AI
+InsightForgeAI
 
 ---
 
 # Project Description
 
-Atlas AI is an Enterprise AI Productivity Platform that enables users to upload business documents, datasets, and technical files to interact with them using AI. The platform combines AI Software Engineering and Data Engineering capabilities into one application.
+InsightForgeAI is an Enterprise AI Productivity Platform that enables users to upload business documents, datasets, and technical files to interact with them using AI. The platform combines AI Software Engineering and Data Engineering capabilities into one application.
 
 ---
 
@@ -16,7 +16,7 @@ Atlas AI is an Enterprise AI Productivity Platform that enables users to upload 
 
 Organizations store information across PDFs, spreadsheets, documents, meeting notes, APIs, and databases. Finding information and creating insights takes significant manual effort.
 
-Atlas AI centralizes enterprise knowledge and provides AI-powered search, analysis, reporting, and automation.
+InsightForgeAI centralizes enterprise knowledge and provides AI-powered search, analysis, reporting, and automation.
 
 ---
 

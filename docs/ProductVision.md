@@ -1,11 +1,11 @@
-# Atlas AI – Product Vision
+# InsightForgeAI – Product Vision
 
 ## Project Name
-Atlas AI
+InsightForgeAI
 
 ## Vision
 
-Atlas AI is an Enterprise AI Productivity Platform designed to help professionals organize knowledge, analyze datasets, automate repetitive tasks, and collaborate with AI through intelligent agents.
+InsightForgeAI is an Enterprise AI Productivity Platform designed to help professionals organize knowledge, analyze datasets, automate repetitive tasks, and collaborate with AI through intelligent agents.
 
 ## Target Users
 
