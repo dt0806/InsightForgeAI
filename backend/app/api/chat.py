@@ -1,6 +1,6 @@
 from fastapi import APIRouter, HTTPException
 
-from app.schemas.chat import ChatRequest
+from app.schemas.chat import ChatRequest, ChatResponse
 from app.services.semantic_search_service import semantic_search
 
 
@@ -10,7 +10,15 @@ router = APIRouter(
 )
 
 
-@router.post("")
+@router.post(
+    "",
+    response_model=ChatResponse,
+    summary="Search a document through the chat endpoint",
+    description=(
+        "Uses semantic retrieval to find the most relevant document chunks "
+        "for the submitted question."
+    ),
+)
 def search_document(request: ChatRequest):
     try:
         matches = semantic_search(
