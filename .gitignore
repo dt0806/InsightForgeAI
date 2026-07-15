@@ -229,6 +229,7 @@ venv/
 
 # Environment variables
 .env
+backend/.env
 
 #uploaded files
 backend/uploads/
