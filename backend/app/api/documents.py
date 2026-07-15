@@ -2,13 +2,22 @@ import json
 from pathlib import Path
 
 from fastapi import APIRouter
+from app.schemas.documents import DocumentListResponse
 
 router = APIRouter()
 
 PROCESSED_DIR = Path("processed")
 
 
-@router.get("/documents")
+@router.get(
+    "/documents",
+    response_model=DocumentListResponse,
+    summary="List processed documents",
+    description=(
+        "Returns all processed documents with their IDs, source filenames, "
+        "and chunk counts."
+    ),
+)
 def list_documents():
     documents = []
 
