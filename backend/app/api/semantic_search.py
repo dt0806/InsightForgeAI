@@ -1,6 +1,9 @@
 from fastapi import APIRouter, HTTPException
 
-from app.schemas.semantic_search import SemanticSearchRequest
+from app.schemas.semantic_search import (
+    SemanticSearchRequest,
+    SemanticSearchResponse,
+)
 from app.services.semantic_search_service import semantic_search
 
 
@@ -10,7 +13,15 @@ router = APIRouter(
 )
 
 
-@router.post("/semantic")
+@router.post(
+    "/semantic",
+    response_model=SemanticSearchResponse,
+    summary="Search a document using semantic similarity",
+    description=(
+        "Creates an embedding for the user question, compares it with "
+        "stored document embeddings, and returns the most relevant chunks."
+    ),
+)
 def search_semantically(request: SemanticSearchRequest):
     try:
         matches = semantic_search(
