@@ -12,37 +12,58 @@ The architecture separates responsibilities into dedicated services, making the 
 
 # High-Level Architecture
 
-```
-                    User
-                      │
-                      ▼
-              FastAPI REST API
-                      │
-        ┌─────────────┼─────────────┐
-        │             │             │
-        ▼             ▼             ▼
-   Upload API    Search APIs     Chat API
-        │             │             │
-        └─────────────┼─────────────┘
-                      │
-                      ▼
-            Service Layer
-                      │
-     ┌─────────────────────────────────────┐
-     │                                     │
-     ▼                                     ▼
-PDF Extraction                  Semantic Search
-Chunking                        Embedding Search
-Metadata                        Similarity Ranking
-                      │
-                      ▼
-               RAG Service
-                      │
-                      ▼
-             OpenAI GPT Model
-                      │
-                      ▼
-            Grounded AI Response
+```mermaid
+flowchart TD
+    User[User or API Client]
+    API[FastAPI REST API]
+
+    Upload[PDF Upload API]
+    Documents[Documents API]
+    Semantic[Semantic Search API]
+    Chat[Chat Retrieval API]
+    RAG[RAG Answer API]
+
+    Extract[PDF Text Extraction]
+    Chunk[Document Chunking]
+    Metadata[Chunk Metadata Generation]
+    Embeddings[Sentence Transformer Embeddings]
+
+    JSON[JSON Chunk Storage]
+    NPY[NumPy Embedding Storage]
+
+    QueryEmbedding[Question Embedding]
+    Similarity[Vector Similarity Search]
+    Context[Top Relevant Chunks]
+    LLM[OpenAI Language Model]
+    Answer[Grounded Answer and Sources]
+
+    User --> API
+
+    API --> Upload
+    API --> Documents
+    API --> Semantic
+    API --> Chat
+    API --> RAG
+
+    Upload --> Extract
+    Extract --> Chunk
+    Chunk --> Metadata
+    Metadata --> Embeddings
+
+    Metadata --> JSON
+    Embeddings --> NPY
+
+    Semantic --> QueryEmbedding
+    Chat --> QueryEmbedding
+    RAG --> QueryEmbedding
+
+    JSON --> Similarity
+    NPY --> Similarity
+    QueryEmbedding --> Similarity
+
+    Similarity --> Context
+    Context --> LLM
+    LLM --> Answer
 ```
 
 ---
