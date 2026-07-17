@@ -1,175 +1,293 @@
 # 🚀 InsightForgeAI
 
-## Enterprise AI Document Intelligence Platform
+## AI-Powered Document Intelligence & Retrieval Platform
 
 Upload • Process • Search • Chat with Enterprise Documents using AI
 
-Built with Python, FastAPI, React, Retrieval-Augmented Generation (RAG), Vector Search, and Large Language Models.
+Built with Python, FastAPI, Sentence Transformers, OpenAI, Retrieval-Augmented Generation (RAG), and Vector Similarity Search.
 
----
+----------------------
 
-## 📖 Overview
+# 📖 Overview
 
-InsightForgeAI is an AI-powered document intelligence platform that enables users to upload PDF documents, extract and process their content, perform intelligent document retrieval, and interact with enterprise knowledge using modern AI techniques.
+InsightForgeAI is an enterprise-style AI document intelligence platform
+that allows users to upload PDF documents, extract text, generate
+embeddings, perform keyword and semantic search, and ask questions using
+Retrieval-Augmented Generation (RAG).
 
-The project follows a modular architecture and is designed to simulate a production-grade enterprise AI application.
+The project demonstrates how modern AI applications combine document
+processing, vector search, REST APIs, and Large Language Models into a
+production-style backend.
 
----
+----------------------
 
-## ✨ Current Features
+# ✨ Features
 
-- ✅ PDF Upload API
-- ✅ Document Processing Pipeline
-- ✅ Text Extraction
-- ✅ Intelligent Document Chunking
-- ✅ Metadata Generation
-- ✅ Processed Documents API
-- ✅ Keyword-based Document Search
-- ✅ REST APIs using FastAPI
-- ✅ Interactive Swagger Documentation
+## 📄 Document Processing
 
----
+-   ✅ PDF Upload
+-   ✅ PDF Text Extraction
+-   ✅ Intelligent Document Chunking
+-   ✅ Metadata Generation
+-   ✅ Local Processed Document Storage
 
-## 🚧 Features In Progress
+## 🔍 Search
 
-- Embedding Generation
-- Vector Database Integration
-- Semantic Search
-- Retrieval-Augmented Generation (RAG)
-- AI Chat Assistant
-- Authentication
-- Docker Deployment
+-   ✅ Keyword Search
+-   ✅ Semantic Search
+-   ✅ Sentence Transformers Embeddings
+-   ✅ Vector Similarity Search (Cosine Similarity)
 
----
+## 🤖 Retrieval-Augmented Generation (RAG)
 
-## 🛠️ Tech Stack
+-   ✅ Context Retrieval
+-   ✅ OpenAI Integration
+-   ✅ Grounded AI Responses
+-   ✅ Source Attribution
 
-### Backend
+## 🌐 REST APIs
 
-- Python
-- FastAPI
-- Uvicorn
-- Pydantic
+-   ✅ Health API
+-   ✅ Upload API
+-   ✅ Documents API
+-   ✅ Semantic Search API
+-   ✅ RAG Question Answering API
+-   ✅ Interactive Swagger Documentation
 
-### Frontend
+## 🧪 Testing
 
-- React
-- JavaScript
-- HTML
-- CSS
+-   Health API Tests
+-   Upload Validation Tests
+-   PDF Extraction Tests
+-   Chunking Tests
+-   Embedding Tests
+-   Storage Tests
+-   Semantic Search Tests
+-   RAG Service Tests
+-   RAG API Integration Tests
 
-### AI
+## ⚙️ DevOps
 
-- Retrieval-Augmented Generation (RAG)
-- Vector Search
-- Large Language Models (In Progress)
+-   GitHub Actions CI
+-   Automated Backend Testing
 
-### Tools
+----------------------
 
-- Git
-- GitHub
-- VS Code
+# 🚧 Future Enhancements
 
----
+-   React Frontend
+-   Docker Support
+-   User Authentication
+-   Vector Database Integration
+-   Multi-document Search
+-   Cloud Deployment
 
-## 🏗️ Architecture
+----------------------
 
-```
-                 React Frontend
-                        │
-                        ▼
-                 FastAPI Backend
-                        │
-        ┌───────────────┴───────────────┐
-        │                               │
-        ▼                               ▼
-   PDF Processing                Search APIs
-        │                               │
-        ▼                               ▼
- Intelligent Chunking          Keyword Retrieval
-        │
-        ▼
- Embeddings (In Progress)
-        │
-        ▼
- Vector Search (In Progress)
-        │
-        ▼
-      RAG Chat
-```
+# 🛠 Tech Stack
 
----
+## Backend
 
-## 📂 Project Structure
+-   Python
+-   FastAPI
+-   Uvicorn
+-   Pydantic
 
-```
-InsightForgeAI
-│
-├── backend
-│   ├── app
-│   ├── uploads
-│   ├── processed
+## AI / ML
+
+-   Sentence Transformers
+-   OpenAI API
+-   Retrieval-Augmented Generation (RAG)
+-   Vector Similarity Search
+-   Cosine Similarity
+
+## Tools
+
+-   Git
+-   GitHub
+-   VS Code
+-   Pytest
+-   GitHub Actions
+
+----------------------
+
+# 🏗 Architecture
+
+For the detailed system design, see:
+
+**docs/Architecture.md**
+
+The architecture includes:
+
+-   PDF Upload
+-   Text Extraction
+-   Document Chunking
+-   Embedding Generation
+-   Semantic Search
+-   RAG Pipeline
+-   OpenAI Integration
+-   REST APIs
+
+----------------------
+
+# 📂 Project Structure
+
+``` text
+InsightForgeAI/
+├── backend/
+│   ├── app/
+│   ├── uploads/
+│   ├── processed/
+│   ├── tests/
 │   └── requirements.txt
-│
-├── docs
-│
+├── docs/
+│   ├── Architecture.md
+│   ├── ProductVision.md
+│   ├── SRS.md
+│   └── screenshots/
+├── .github/
+│   └── workflows/
 └── README.md
 ```
 
----
+----------------------
 
-## 🚀 Running the Project
+# 🚀 Installation
 
-### Backend
+``` bash
+git clone https://github.com/dt0806/InsightForgeAI.git
 
-```bash
-cd backend
+cd InsightForgeAI/backend
 
 python -m venv venv
 
 venv\Scripts\activate
 
 pip install -r requirements.txt
+```
 
+## 🔑 Environment Variables
+
+Create a `.env` file inside the `backend` directory:
+
+``` env
+OPENAI_API_KEY=your_openai_api_key
+```
+
+Note: Never commit your actual `.env` file or API keys to version control. Add `.env` to your `.gitignore` to keep sensitive credentials out of your repository.
+
+----------------------
+
+# ▶ Running the Application
+
+``` bash
 uvicorn app.main:app --reload
 ```
 
 Backend:
 
-```
-http://localhost:8000
+    http://localhost:8000
+
+Swagger UI:
+
+    http://localhost:8000/docs
+
+----------------------
+
+# 🧪 Running Tests
+
+``` bash
+cd backend
+python -m pytest -v
 ```
 
-Swagger:
+----------------------
 
-```
-http://localhost:8000/docs
-```
+# 📡 API Endpoints
+
+  Method   Endpoint                            Description
+  -------- ----------------------------------- --------------------------
+  GET      `/`                                 Welcome endpoint for the InsightForgeAI API
+  POST     `/upload/pdf`                       Upload and process a PDF document
+  GET      `/documents`                        Retrieve all processed documents
+  GET      `/health`                           Check API health status
+  POST     `/chat`                             Search a document using the chat endpoint
+  POST     `/search/semantic`                  Perform semantic search using vector similarity
+  POST     `/rag/answer`                       Generate a grounded answer using the RAG pipeline
+
+----------------------
+
+# 📸 Screenshots
+
+## Swagger UI 
+![Swagger UI](docs/screenshots/01_swagger-overview.png)
+---
+## PDF Upload 
+![PDF Upload](docs/screenshots/02_pdf-upload.png)
 
 ---
 
-## 📅 Roadmap
-
-- ✅ FastAPI Backend
-- ✅ PDF Upload
-- ✅ Document Processing
-- ✅ Keyword Search
-- 🚧 Embedding Generation
-- 🚧 Vector Search
-- 🚧 Semantic Search
-- 🚧 RAG
-- 🚧 AI Chat
-- 🚧 Authentication
+## Semantic Search 
+![Semantic Search](docs/screenshots/03_semantic-search.png)
 
 ---
 
-## 🎯 Purpose
-
-This project demonstrates enterprise-level AI application development using Python, FastAPI, modern REST APIs, document processing, and Retrieval-Augmented Generation (RAG) concepts.
+## RAG Answer 
+![RAG Response](docs/screenshots/04_rag-answer.png)
 
 ---
 
-## 👨‍💻 Author
+## Tests Passed 
+![Tests](docs/screenshots/05_tests-passed.png)
+
+---
+
+## GitHub Actions 
+![GitHub Actions](docs/screenshots/06_github-actions.png)
+
+----------------------
+
+# 📚 Documentation
+
+-   `docs/Architecture.md`
+-   `docs/ProductVision.md`
+-   `docs/SRS.md`
+
+----------------------
+
+# 🗺 Roadmap
+
+## ✅ Version 1.0
+
+-   FastAPI Backend
+-   PDF Upload & Processing
+-   Keyword Search
+-   Semantic Search
+-   Sentence Transformers
+-   RAG Pipeline
+-   OpenAI Integration
+-   Automated Testing
+-   GitHub Actions CI
+
+## 🚀 Version 2.0
+
+-   React Frontend
+-   Authentication
+-   Docker
+-   Vector Database
+-   Cloud Deployment
+
+----------------------
+
+# 🎯 Purpose
+
+This project demonstrates enterprise-level AI application development
+using Python, FastAPI, semantic search, vector retrieval, and
+Retrieval-Augmented Generation (RAG).
+
+----------------------
+
+# 👨‍💻 Author
 
 **Dharani**
 
